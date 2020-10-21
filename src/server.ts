@@ -1,9 +1,10 @@
 import express, {Application, Request, Response} from 'express';
 import parse from './modules/parse';
+import {getEnvVal} from './utils';
 
 // Connection
-const PORT = 3000;
-const HOST_IP = `localhost`;
+const PORT:any = getEnvVal('PORT');
+const HOST_IP:any = getEnvVal('IP');
 
 const app: Application = express();
 

@@ -13,7 +13,7 @@ describe(`Testing parse api`,()=>{
         const res = await request(app).post('/api/v1/parse').send({
             "data": "JOHN0000MICHAEL0009994567"
         });
-        console.log(res)
+        expect(res.status).toEqual(200);
         expect(res.body).toEqual({
             "status": 200,
             "data": {
@@ -23,4 +23,12 @@ describe(`Testing parse api`,()=>{
             }
         })
     })
+
+    it(`Missing data in request`, async()=>{
+        const res = await request(app).post('/api/v1/parse').send({});
+        expect(res.status).toEqual(400);
+        expect(res.body).toEqual({
+            "err": "Invalid Request"
+        })
+    });    
 })
